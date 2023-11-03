@@ -4977,7 +4977,7 @@ dependencies = [
 [[package]]
 name = "pallet-letters"
 version = "0.1.0"
-source = "git+https://github.com/slonigiraf/recommendation-letter.git?rev=9bfc5ead6213b99568b21cbce25cba2a04f50d57#9bfc5ead6213b99568b21cbce25cba2a04f50d57"
+source = "git+https://github.com/slonigiraf/recommendation-letter.git?rev=9558c7c7050703133af2e7833915d33769f9a5b6#9558c7c7050703133af2e7833915d33769f9a5b6"
 dependencies = [
  "frame-benchmarking 4.0.0-dev (git+https://github.com/paritytech/substrate.git?branch=polkadot-v0.9.18)",
  "frame-support 4.0.0-dev (git+https://github.com/paritytech/substrate.git?branch=polkadot-v0.9.18)",
