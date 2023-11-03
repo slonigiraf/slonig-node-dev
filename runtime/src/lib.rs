@@ -49,6 +49,9 @@ pub use sp_runtime::{Perbill, Permill};
 /// Import the template pallet.
 pub use pallet_template;
 
+/// Import the letters pallet.
+pub use pallet_letters;
+
 /// An index to a block.
 pub type BlockNumber = u32;
 
@@ -268,6 +271,21 @@ impl pallet_sudo::Config for Runtime {
 	type WeightInfo = pallet_sudo::weights::SubstrateWeight<Runtime>;
 }
 
+// Configure the pallet-letters.
+parameter_types! {
+	pub const DefaultDifficulty: u32 = 100000;
+	pub const LettersPerChunk: u32 = 1000;//Don't change this
+}
+
+impl pallet_letters::Config for Runtime {
+	type Event = Event;
+	type Randomness = RandomnessCollectiveFlip;
+	type Currency = Balances;
+	type WeightInfo = pallet_letters::weights::SubstrateWeight<Runtime>;
+	type DefaultDifficulty = DefaultDifficulty;
+	type LettersPerChunk = LettersPerChunk;
+}
+
 /// Configure the pallet-template in pallets/template.
 impl pallet_template::Config for Runtime {
 	type RuntimeEvent = RuntimeEvent;
@@ -286,6 +304,8 @@ construct_runtime!(
 		Sudo: pallet_sudo,
 		// Include the custom logic from the pallet-template in the runtime.
 		TemplateModule: pallet_template,
+		// Substrate Letters pallet
+		Letters: pallet_letters::{Pallet, Storage, Call, Event<T>, Config},
 	}
 );
 
@@ -334,6 +354,7 @@ mod benches {
 		[pallet_timestamp, Timestamp]
 		[pallet_sudo, Sudo]
 		[pallet_template, TemplateModule]
+		[pallet_letters, Letters]
 	);
 }
 
