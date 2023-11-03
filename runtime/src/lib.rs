@@ -279,7 +279,6 @@ parameter_types! {
 
 impl pallet_letters::Config for Runtime {
 	type Event = Event;
-	type Randomness = RandomnessCollectiveFlip;
 	type Currency = Balances;
 	type WeightInfo = pallet_letters::weights::SubstrateWeight<Runtime>;
 	type DefaultDifficulty = DefaultDifficulty;
