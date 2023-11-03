@@ -278,7 +278,7 @@ parameter_types! {
 }
 
 impl pallet_letters::Config for Runtime {
-	type Event = Event;
+	type RuntimeEvent = RuntimeEvent;
 	type Currency = Balances;
 	type WeightInfo = pallet_letters::weights::SubstrateWeight<Runtime>;
 	type DefaultDifficulty = DefaultDifficulty;
@@ -304,7 +304,7 @@ construct_runtime!(
 		// Include the custom logic from the pallet-template in the runtime.
 		TemplateModule: pallet_template,
 		// Substrate Letters pallet
-		Letters: pallet_letters::{Pallet, Storage, Call, Event<T>, Config},
+		Letters: pallet_letters::{Pallet, Call, Storage, Event<T>, Config<Test>},
 	}
 );
 
