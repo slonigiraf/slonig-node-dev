@@ -52,6 +52,9 @@ pub use pallet_template;
 /// Import the letters pallet.
 pub use pallet_letters;
 
+/// Import the laws pallet.
+pub use pallet_laws;
+
 /// An index to a block.
 pub type BlockNumber = u32;
 
@@ -285,6 +288,12 @@ impl pallet_letters::Config for Runtime {
 	type LettersPerChunk = LettersPerChunk;
 }
 
+impl pallet_laws::Config for Runtime {
+	type RuntimeEvent = RuntimeEvent;
+	type Currency = Balances;
+	type WeightInfo = pallet_laws::weights::SubstrateWeight<Runtime>;
+}
+
 /// Configure the pallet-template in pallets/template.
 impl pallet_template::Config for Runtime {
 	type RuntimeEvent = RuntimeEvent;
@@ -305,6 +314,7 @@ construct_runtime!(
 		TemplateModule: pallet_template,
 		// Substrate Letters pallet
 		Letters: pallet_letters::{Pallet, Call, Storage, Event<T>, Config<Test>},
+		Laws: pallet_laws::{Pallet, Call, Storage, Event<T>, Config<Test>},
 	}
 );
 
@@ -354,6 +364,7 @@ mod benches {
 		[pallet_sudo, Sudo]
 		[pallet_template, TemplateModule]
 		[pallet_letters, Letters]
+		[pallet_laws, Laws]
 	);
 }
 

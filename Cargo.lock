@@ -4466,6 +4466,7 @@ dependencies = [
  "pallet-aura",
  "pallet-balances",
  "pallet-grandpa",
+ "pallet-laws",
  "pallet-letters",
  "pallet-sudo",
  "pallet-template",
@@ -4747,6 +4748,23 @@ dependencies = [
  "sp-runtime",
  "sp-session",
  "sp-staking",
+ "sp-std",
+]
+
+[[package]]
+name = "pallet-laws"
+version = "0.1.0"
+source = "git+https://github.com/slonigiraf/law.git?rev=1698a71c5fa1a2e1a77702bbc1652115f1075a6e#1698a71c5fa1a2e1a77702bbc1652115f1075a6e"
+dependencies = [
+ "frame-benchmarking",
+ "frame-support",
+ "frame-system",
+ "parity-scale-codec",
+ "scale-info",
+ "serde",
+ "sp-core",
+ "sp-io",
+ "sp-runtime",
  "sp-std",
 ]
 

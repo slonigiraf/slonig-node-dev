@@ -155,5 +155,6 @@ fn testnet_genesis(
 		},
 		transaction_payment: Default::default(),
 		letters: Default::default(),
+		laws: Default::default(),
 	}
 }
