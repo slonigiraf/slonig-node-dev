@@ -1,33 +1,34 @@
-version: '3.2'
+version: '3'
 
 services:
   ws-parachain-1:
-    image: paritytech/ci-linux:production
-    container_name: ws-parachain-1
+    image: slonig-dev
+    container_name: slonig-dev
     restart: unless-stopped
-    working_dir: /var/www/node-template
     volumes:
-      - .:/var/www/node-template
-      - type: bind
-        source: ./.local
-        target: /root/.local
-      - ws-parachain-1:/polkadot/chain-state
+      - slonig-dev:/polkadot/chain-state
     ports:
       - 65.109.58.6:30333:30333 # p2p port
       - 65.109.58.6:9933:9933 # rpc port
       - 65.109.58.6:9944:9944 # ws port
     environment:
-      - CARGO_HOME=/var/www/node-template/.cargo
       - VIRTUAL_HOST=ws-parachain-1.slonigiraf.org
       - VIRTUAL_PORT=9944
       - LETSENCRYPT_HOST=ws-parachain-1.slonigiraf.org
       - LETSENCRYPT_EMAIL=reshetovdenis@gmail.com
     expose:
       - 9944
-    command: bash -c "./target/release/node-template --dev --rpc-external --base-path /polkadot/chain-state --name ws-parachain-1 --rpc-cors all"
+    command: [
+      "/usr/bin/node-template",
+      "--dev",
+      "--base-path", "/polkadot/chain-state",
+      "--name", "ws-parachain-1",
+      "--rpc-external",
+      "--rpc-cors", "all"
+    ]
 
 volumes:
-  ws-parachain-1: {}
+  slonig-dev: {}
 
 networks:
   default:
