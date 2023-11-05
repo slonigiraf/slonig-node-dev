@@ -1,5 +1,6 @@
 #!/bin/sh
 git pull
+cargo build --release
 docker compose down
-docker build -t slonig-dev -f Containerfile .
+DOCKER_BUILDKIT=1 docker build -t slonig-dev -f Containerfile .
 docker compose up -d
