@@ -4771,7 +4771,7 @@ dependencies = [
 [[package]]
 name = "pallet-letters"
 version = "0.1.0"
-source = "git+https://github.com/slonigiraf/recommendation-letter.git?rev=5e1072c3b357d18e1648d301ba5384f5ef1a1b9a#5e1072c3b357d18e1648d301ba5384f5ef1a1b9a"
+source = "git+https://github.com/slonigiraf/recommendation-letter.git?rev=b88fddf2861dc2639dad6517109d34c329c56f75#b88fddf2861dc2639dad6517109d34c329c56f75"
 dependencies = [
  "frame-benchmarking",
  "frame-support",
