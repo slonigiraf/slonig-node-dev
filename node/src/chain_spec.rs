@@ -7,6 +7,7 @@ use sp_consensus_aura::sr25519::AuthorityId as AuraId;
 use sp_consensus_grandpa::AuthorityId as GrandpaId;
 use sp_core::{sr25519, Pair, Public};
 use sp_runtime::traits::{IdentifyAccount, Verify};
+use hex_literal::hex;
 
 // The URL for the telemetry server.
 // const STAGING_TELEMETRY_URL: &str = "wss://telemetry.polkadot.io/submit/";
@@ -49,15 +50,15 @@ pub fn development_config() -> Result<ChainSpec, String> {
 			testnet_genesis(
 				wasm_binary,
 				// Initial PoA authorities
-				vec![authority_keys_from_seed("Alice")],
+				vec![authority_keys_from_seed("0x5ebb4d36fcd4cab25a900303d96e1ccee29578548017f6c3ac7d9f56f9ac6af9")],
 				// Sudo account
-				get_account_id_from_seed::<sr25519::Public>("Alice"),
+				get_account_id_from_seed::<sr25519::Public>("0x5ebb4d36fcd4cab25a900303d96e1ccee29578548017f6c3ac7d9f56f9ac6af9"),
 				// Pre-funded accounts
 				vec![
-					get_account_id_from_seed::<sr25519::Public>("Alice"),
-					get_account_id_from_seed::<sr25519::Public>("Bob"),
-					get_account_id_from_seed::<sr25519::Public>("Alice//stash"),
-					get_account_id_from_seed::<sr25519::Public>("Bob//stash"),
+					get_account_id_from_seed::<sr25519::Public>("0x5ebb4d36fcd4cab25a900303d96e1ccee29578548017f6c3ac7d9f56f9ac6af9"),
+					hex_literal::hex!("0x8e50f225f8e4ac5aafeb83e876b56004d25a6d7cbb61d6d01f06d759e2a8ea15"),
+					hex_literal::hex!("0x589aa3d8e660b7d170cd63aacddbdefdfae8e78e109b9f74c645cc04b0e79924"),
+					hex_literal::hex!("0xaa3d21bddb959cb80b1b19aec76e3fbc5bc622426ed824c1ef9990a880af1728"),
 				],
 				true,
 			)
