@@ -41,10 +41,10 @@ pub fn development_config() -> Result<ChainSpec, String> {
 
 	Ok(ChainSpec::from_genesis(
 		// Name
-		"Development",
+		"Slonig",
 		// ID
-		"dev",
-		ChainType::Development,
+		"slonig",
+		ChainType::Live,
 		move || {
 			testnet_genesis(
 				wasm_binary,
