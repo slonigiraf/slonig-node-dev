@@ -8,6 +8,7 @@ use sp_consensus_grandpa::AuthorityId as GrandpaId;
 use sp_core::{sr25519, Pair, Public};
 use sp_runtime::traits::{IdentifyAccount, Verify};
 use hex_literal::hex;
+use sp_core::crypto::AccountId32;
 
 // The URL for the telemetry server.
 // const STAGING_TELEMETRY_URL: &str = "wss://telemetry.polkadot.io/submit/";
@@ -56,9 +57,9 @@ pub fn development_config() -> Result<ChainSpec, String> {
 				// Pre-funded accounts
 				vec![
 					get_account_id_from_seed::<sr25519::Public>("flip ethics aisle exchange toast term collect flavor away across plug can"),
-					hex_literal::hex!("8e50f225f8e4ac5aafeb83e876b56004d25a6d7cbb61d6d01f06d759e2a8ea15"),
-					hex_literal::hex!("589aa3d8e660b7d170cd63aacddbdefdfae8e78e109b9f74c645cc04b0e79924"),
-					hex_literal::hex!("aa3d21bddb959cb80b1b19aec76e3fbc5bc622426ed824c1ef9990a880af1728"),
+					AccountId32::from(hex!("8e50f225f8e4ac5aafeb83e876b56004d25a6d7cbb61d6d01f06d759e2a8ea15")),
+					AccountId32::from(hex!("589aa3d8e660b7d170cd63aacddbdefdfae8e78e109b9f74c645cc04b0e79924")),
+					AccountId32::from(hex!("aa3d21bddb959cb80b1b19aec76e3fbc5bc622426ed824c1ef9990a880af1728")),
 				],
 				true,
 			)
