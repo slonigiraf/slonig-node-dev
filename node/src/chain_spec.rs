@@ -51,12 +51,12 @@ pub fn development_config() -> Result<ChainSpec, String> {
 			testnet_genesis(
 				wasm_binary,
 				// Initial PoA authorities
-				vec![authority_keys_from_seed("flip ethics aisle exchange toast term collect flavor away across plug can")],
+				vec![authority_keys_from_seed("Alice")],
 				// Sudo account
-				get_account_id_from_seed::<sr25519::Public>("flip ethics aisle exchange toast term collect flavor away across plug can"),
+				get_account_id_from_seed::<sr25519::Public>("Alice"),
 				// Pre-funded accounts
 				vec![
-					get_account_id_from_seed::<sr25519::Public>("flip ethics aisle exchange toast term collect flavor away across plug can"),
+					get_account_id_from_seed::<sr25519::Public>("Alice"),
 					AccountId32::from(hex!("8e50f225f8e4ac5aafeb83e876b56004d25a6d7cbb61d6d01f06d759e2a8ea15")),
 					AccountId32::from(hex!("589aa3d8e660b7d170cd63aacddbdefdfae8e78e109b9f74c645cc04b0e79924")),
 					AccountId32::from(hex!("aa3d21bddb959cb80b1b19aec76e3fbc5bc622426ed824c1ef9990a880af1728")),
