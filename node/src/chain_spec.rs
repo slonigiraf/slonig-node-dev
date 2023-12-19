@@ -139,7 +139,7 @@ fn testnet_genesis(
 	endowed_accounts: Vec<AccountId>,
 	_enable_println: bool,
 ) -> RuntimeGenesisConfig {
-	let total_tokens: u128 = 10_000_000_000; // 1e10 tokens
+	let total_tokens: u128 = 10_000_000_000 * 1_000_000_000_000; // 1e10 tokens with 12 decimals
     let num_accounts = endowed_accounts.len() as u128;
     let tokens_per_account = total_tokens / num_accounts;
 
