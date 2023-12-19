@@ -38,6 +38,10 @@ pub fn authority_keys_from_seed(s: &str) -> (AuraId, GrandpaId) {
 	(get_from_seed::<AuraId>(s), get_from_seed::<GrandpaId>(s))
 }
 
+let mut props = Properties::new();
+props.insert("tokenSymbol".into(), "Slon".into());
+props.insert("tokenDecimals".into(), "12".into());
+
 pub fn development_config() -> Result<ChainSpec, String> {
 	let wasm_binary = WASM_BINARY.ok_or_else(|| "Development wasm not available".to_string())?;
 
@@ -51,12 +55,12 @@ pub fn development_config() -> Result<ChainSpec, String> {
 			testnet_genesis(
 				wasm_binary,
 				// Initial PoA authorities
-				vec![authority_keys_from_seed("Alice")],
+				vec![authority_keys_from_seed("Alice")],//Will be overwritten at testnet_genesis
 				// Sudo account
-				get_account_id_from_seed::<sr25519::Public>("Alice"),
+				AccountId32::from(hex!("e898715afab94a5e7176284af1736b4cab814841c66ac885bae82737d965703e")),
 				// Pre-funded accounts
 				vec![
-					get_account_id_from_seed::<sr25519::Public>("Alice"),
+					AccountId32::from(hex!("e898715afab94a5e7176284af1736b4cab814841c66ac885bae82737d965703e")),
 					AccountId32::from(hex!("8e50f225f8e4ac5aafeb83e876b56004d25a6d7cbb61d6d01f06d759e2a8ea15")),
 					AccountId32::from(hex!("589aa3d8e660b7d170cd63aacddbdefdfae8e78e109b9f74c645cc04b0e79924")),
 					AccountId32::from(hex!("aa3d21bddb959cb80b1b19aec76e3fbc5bc622426ed824c1ef9990a880af1728")),
@@ -72,7 +76,7 @@ pub fn development_config() -> Result<ChainSpec, String> {
 		None,
 		None,
 		// Properties
-		None,
+		props,
 		// Extensions
 		None,
 	))
@@ -134,6 +138,13 @@ fn testnet_genesis(
 	endowed_accounts: Vec<AccountId>,
 	_enable_println: bool,
 ) -> RuntimeGenesisConfig {
+	let total_tokens: u128 = 10_000_000_000; // 1e10 tokens
+    let num_accounts = endowed_accounts.len() as u128;
+    let tokens_per_account = total_tokens / num_accounts;
+
+	let aura_key = hex!["da8592836a3f7e3d93cf0be4dab90c096e7acff4ab90d2e2325e8c12fc84b937"];
+    let grandpa_key = hex!["692bd4a69b26979039e70c5f169475a99ed078a2e48781e1041cd3492f6cb276"];
+
 	RuntimeGenesisConfig {
 		system: SystemConfig {
 			// Add Wasm runtime to storage.
@@ -141,15 +152,14 @@ fn testnet_genesis(
 			..Default::default()
 		},
 		balances: BalancesConfig {
-			// Configure endowed accounts with initial balance of 1 << 60.
-			balances: endowed_accounts.iter().cloned().map(|k| (k, 1 << 60)).collect(),
+			// Configure endowed accounts with initial balance of tokens_per_account.
+			balances: endowed_accounts.iter().cloned().map(|k| (k, tokens_per_account)).collect(),
 		},
 		aura: AuraConfig {
-			authorities: initial_authorities.iter().map(|x| (x.0.clone())).collect(),
+			authorities: vec![aura_key.into()],
 		},
 		grandpa: GrandpaConfig {
-			authorities: initial_authorities.iter().map(|x| (x.1.clone(), 1)).collect(),
-			..Default::default()
+			authorities: vec![(grandpa_key.into(), 1)],
 		},
 		sudo: SudoConfig {
 			// Assign network admin rights.
