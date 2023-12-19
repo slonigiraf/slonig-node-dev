@@ -56,7 +56,7 @@ pub fn development_config() -> Result<ChainSpec, String> {
 			testnet_genesis(
 				wasm_binary,
 				// Initial PoA authorities
-				vec![authority_keys_from_seed("Alice")],//Will be overwritten at testnet_genesis
+				vec![authority_keys_from_seed("Alice")],
 				// Sudo account
 				AccountId32::from(hex!("e898715afab94a5e7176284af1736b4cab814841c66ac885bae82737d965703e")),
 				// Pre-funded accounts
@@ -142,11 +142,6 @@ fn testnet_genesis(
 	let total_tokens: u128 = 10_000_000_000 * 1_000_000_000_000; // 1e10 tokens with 12 decimals
     let num_accounts = endowed_accounts.len() as u128;
     let tokens_per_account = total_tokens / num_accounts;
-
-	let aura_key = hex!["da8592836a3f7e3d93cf0be4dab90c096e7acff4ab90d2e2325e8c12fc84b937"];
-	let aura_id = AuraId::from_slice(&aura_key);
-    let grandpa_key = hex!["692bd4a69b26979039e70c5f169475a99ed078a2e48781e1041cd3492f6cb276"];
-	let grandpa_id = GrandpaId::from_slice(&grandpa_key);
 	
 	RuntimeGenesisConfig {
 		system: SystemConfig {
@@ -159,11 +154,11 @@ fn testnet_genesis(
 			balances: endowed_accounts.iter().cloned().map(|k| (k, tokens_per_account)).collect(),
 		},
 		aura: AuraConfig {
-			authorities: vec![aura_id.expect("Valid Aura public key; qed")],
+			authorities: initial_authorities.iter().map(|x| (x.0.clone())).collect(),
 		},
 		grandpa: GrandpaConfig {
-			authorities: vec![(grandpa_id.expect("Valid Grandpa public key; qed"), 1)],
-			_config: Default::default(),
+			authorities: initial_authorities.iter().map(|x| (x.1.clone(), 1)).collect(),
+			..Default::default()
 		},
 		sudo: SudoConfig {
 			// Assign network admin rights.
