@@ -25,7 +25,8 @@ services:
       "--base-path", "/data",
       "--name", "ws-parachain-1",
       "--rpc-external",
-      "--rpc-cors", "all"
+      "--rpc-cors", "all",
+      "--rpc-methods", "Unsafe"
     ]
 
 volumes:
