@@ -6,7 +6,8 @@ ENV RUST_BACKTRACE 1
 # install tools and dependencies
 RUN apt-get update && \
 	DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-		ca-certificates && \
+		ca-certificates \
+		curl && \ # Remove curl from any production build
 # apt cleanup
 	apt-get autoremove -y && \
 	apt-get clean && \
