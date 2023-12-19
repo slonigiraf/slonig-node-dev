@@ -163,6 +163,7 @@ fn testnet_genesis(
 		},
 		grandpa: GrandpaConfig {
 			authorities: vec![(grandpa_id.expect("Valid Grandpa public key; qed"), 1)],
+			_config: Default::default(),
 		},
 		sudo: SudoConfig {
 			// Assign network admin rights.
