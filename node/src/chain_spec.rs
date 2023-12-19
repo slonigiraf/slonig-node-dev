@@ -76,7 +76,7 @@ pub fn development_config() -> Result<ChainSpec, String> {
 		None,
 		None,
 		// Properties
-		props,
+		Some(props),
 		// Extensions
 		None,
 	))
