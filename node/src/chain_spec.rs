@@ -143,8 +143,10 @@ fn testnet_genesis(
     let tokens_per_account = total_tokens / num_accounts;
 
 	let aura_key = hex!["da8592836a3f7e3d93cf0be4dab90c096e7acff4ab90d2e2325e8c12fc84b937"];
+	let aura_id = AuraId::from_slice(&aura_key);
     let grandpa_key = hex!["692bd4a69b26979039e70c5f169475a99ed078a2e48781e1041cd3492f6cb276"];
-
+	let grandpa_id = GrandpaId::from_slice(&grandpa_key);
+	
 	RuntimeGenesisConfig {
 		system: SystemConfig {
 			// Add Wasm runtime to storage.
@@ -156,10 +158,10 @@ fn testnet_genesis(
 			balances: endowed_accounts.iter().cloned().map(|k| (k, tokens_per_account)).collect(),
 		},
 		aura: AuraConfig {
-			authorities: vec![aura_key.into()],
+			authorities: vec![aura_id.expect("Valid Aura public key; qed")],
 		},
 		grandpa: GrandpaConfig {
-			authorities: vec![(grandpa_key.into(), 1)],
+			authorities: vec![(grandpa_id.expect("Valid Grandpa public key; qed"), 1)],
 		},
 		sudo: SudoConfig {
 			// Assign network admin rights.
