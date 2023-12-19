@@ -38,13 +38,12 @@ pub fn authority_keys_from_seed(s: &str) -> (AuraId, GrandpaId) {
 	(get_from_seed::<AuraId>(s), get_from_seed::<GrandpaId>(s))
 }
 
-let mut props = Properties::new();
-props.insert("tokenSymbol".into(), "Slon".into());
-props.insert("tokenDecimals".into(), "12".into());
-
 pub fn development_config() -> Result<ChainSpec, String> {
 	let wasm_binary = WASM_BINARY.ok_or_else(|| "Development wasm not available".to_string())?;
-
+	let mut props = Properties::new();
+	props.insert("tokenSymbol".into(), "Slon".into());
+	props.insert("tokenDecimals".into(), "12".into());
+	
 	Ok(ChainSpec::from_genesis(
 		// Name
 		"Slonig",
