@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  ws-parachain-1:
+    image: slonig-dev
+    container_name: slonig-dev
+    user: "1000:1000"
+    restart: unless-stopped
+    volumes:
+      - slonig-dev:/data
+    ports:
+      - 30333:30333 # p2p port
+      - 9933:9933 # rpc port
+      - 9944:9944 # ws port
+    expose:
+      - 9944
+    command: [
+      "/usr/bin/node-template",
+      "--dev",
+      "--base-path", "/data",
+      "--name", "ws-parachain-1",
+      "--rpc-external",
+      "--rpc-cors", "all"
+    ]
+
+volumes:
+  slonig-dev: {}
