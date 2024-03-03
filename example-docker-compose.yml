@@ -9,9 +9,9 @@ services:
     volumes:
       - slonig-dev:/data
     ports:
-      - 65.109.58.6:30333:30333 # p2p port
-      - 65.109.58.6:9933:9933 # rpc port
-      - 65.109.58.6:9944:9944 # ws port
+      - 30333:30333 # p2p port
+      - 9933:9933 # rpc port
+      - 9944:9944 # ws port
     environment:
       - VIRTUAL_HOST=ws-parachain-1.slonigiraf.org
       - VIRTUAL_PORT=9944
