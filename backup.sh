@@ -3,7 +3,7 @@
 # Define variables
 bucket="s3://slonig/"
 CONTAINER_NAME="slonig-dev"
-VOLUME_NAME="slonig-dev"
+VOLUME_NAME="ws-parachain-1slonigiraforg_slonig-dev"
 BACKUP_PATH="/home/ubuntu/tmp"
 TIMESTAMP=$(date +"%Y-%m-%d_%H-%M-%S")
 BACKUP_FILE_NAME="slonig-dev_backup_$TIMESTAMP.tar.gz"
