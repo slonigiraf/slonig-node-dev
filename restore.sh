@@ -7,7 +7,7 @@ if [ "$#" -ne 1 ]; then
 fi
 
 BACKUP_FILE="$1"
-VOLUME_NAME="slonig-dev"
+VOLUME_NAME="ws-parachain-1slonigiraforg_slonig-dev"
 DOCKER_COMPOSE_FILE="./docker-compose.yml"
 
 # Stop Docker containers
