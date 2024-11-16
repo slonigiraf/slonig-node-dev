@@ -226,6 +226,13 @@ impl pallet_grandpa::Config for Runtime {
 	type EquivocationReportSystem = ();
 }
 
+impl pallet_utility::Config for Runtime {
+	type RuntimeEvent = RuntimeEvent;
+	type RuntimeCall = RuntimeCall;
+	type PalletsOrigin = OriginCaller;
+	type WeightInfo = pallet_utility::weights::SubstrateWeight<Runtime>;
+}
+
 impl pallet_timestamp::Config for Runtime {
 	/// A timestamp: milliseconds since the unix epoch.
 	type Moment = u64;
@@ -315,6 +322,7 @@ construct_runtime!(
 		// Substrate Letters pallet
 		Letters: pallet_letters::{Pallet, Call, Storage, Event<T>, Config<Test>},
 		Laws: pallet_laws::{Pallet, Call, Storage, Event<T>, Config<Test>},
+		Utility: pallet_utility::{Pallet, Call, Event}
 	}
 );
 
@@ -357,6 +365,7 @@ extern crate frame_benchmarking;
 #[cfg(feature = "runtime-benchmarks")]
 mod benches {
 	define_benchmarks!(
+		[pallet_utility, Utility]
 		[frame_benchmarking, BaselineBench::<Runtime>]
 		[frame_system, SystemBench::<Runtime>]
 		[pallet_balances, Balances]

@@ -10,7 +10,6 @@ use sp_runtime::traits::{IdentifyAccount, Verify};
 use hex_literal::hex;
 use sp_core::crypto::AccountId32;
 use sc_service::Properties;
-use sp_core::ByteArray;
 
 // The URL for the telemetry server.
 // const STAGING_TELEMETRY_URL: &str = "wss://telemetry.polkadot.io/submit/";
