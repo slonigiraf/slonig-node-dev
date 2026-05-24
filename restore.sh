@@ -8,7 +8,7 @@ fi
 
 BACKUP_FILE="$1"
 VOLUME_NAME="ws-parachain-1slonigiraforg_slonig-dev"
-DOCKER_COMPOSE_FILE="./docker compose.yml"
+DOCKER_COMPOSE_FILE="./docker-compose.yml"
 
 # Stop Docker containers
 echo "Stopping Docker containers..."

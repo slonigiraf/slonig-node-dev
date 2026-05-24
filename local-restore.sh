@@ -8,7 +8,7 @@ fi
 
 BACKUP_FILE="$1"
 VOLUME_NAME="slonig-node-dev_slonig-dev"
-DOCKER_COMPOSE_FILE="./local-docker compose.yml"
+DOCKER_COMPOSE_FILE="./local-docker-compose.yml"
 
 # Stop Docker containers
 echo "Stopping Docker containers..."
