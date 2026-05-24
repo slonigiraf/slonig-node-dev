@@ -1,4 +1,5 @@
 #!/bin/sh
+set -e
 git pull
 cargo build --release
 docker compose down
